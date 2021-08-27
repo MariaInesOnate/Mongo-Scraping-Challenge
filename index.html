@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Information</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!--row for news title and paragraph -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="car-body">
+            <h1 class="cart-title">Latest Mars News</h1>
+            <hr>
+            <h3>{{mars.Mars_News_Title}}</h3>
+            <p>{{mars.Mars_News_Paragraph}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- row for featured image and weather tweet -->
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Featured Mars Image</h2>
+        <img src={{mars.Mars_Featured_Image}} alt="Mars Featured Image" height=500px width=800px>
+      </div>
+
+      <!-- column and row for weather tweet -->
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="car-body">
+                <h2 class="cart-title">Current Weather on Mars</h2>
+                {{mars.Mars_Weather_Data}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- column and row for mars facts table -->
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="car-body">
+                <h2 class="cart-title">Mars Facts</h2>
+                <p>{{mars.Mars_Facts|safe}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- new row for hemisphere images -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">Mars Hemispheres</h2>
+      </div>
+    </div>
+
+    <!-- create group for images of hemispheres to loop through and pull hemi info in -->
+    <div class="card-group">
+      {% for hemi in mars.Mars_Hemisphere_Images %}
+      <div class="col-md-6">
+        <div class="card text-center">
+          <img class="card-img-top" src="{{hemi.image_url}}" alt="Mars Hemisphere Image" height=500px width=500px>
+          <div class="card-body">
+            <h3 class="card-title">{{hemi.title}}</h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <!-- paste in scripts to be able to utilize tools -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
